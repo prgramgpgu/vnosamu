@@ -1,11 +1,13 @@
 <div class="col-md-2 py-3 px-1" style="background-color: #e3f2fd;">
 
-    @if (count($section->uploads) > 0)
-        @include('shared.documents')
+    @if (isset($section))
+        @if (count($section->uploads) > 0)
+            @include('shared.documents')
+        @endif
     @endif
 
     <div class="card">
-        <div class="card-header">
+        <div class="card-header text-center">
             <b>Контакты</b>
         </div>
         <div class="card-body px-1 py-1">
@@ -24,13 +26,15 @@
     </div>
 
     <div class="card my-3">
-        <div class="card-header">
+        <div class="card-header text-center">
             <b>Свидетельство</b>
         </div>
         <div class="card-body px-1 py-1">
             **Будет скан свидетельства о регистрации СМИ**
         </div>
     </div>
+
+
 
 {{--    <div class="card my-3">--}}
 {{--        <div class="card-header">--}}
