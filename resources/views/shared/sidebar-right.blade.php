@@ -14,7 +14,7 @@
             <p class="text-center" style="font-size: 10pt;">Россия, 681000, Дальневосточный федеральный
                 округ, Хабаровский край, г. Комсомольск-на-Амуре, ул. Кирова, д. 17, корп. 2, ауд. 138 </p>
             <div class="dropdown-divider"></div>
-            <p style="font-size: 10pt;">Тел.: +7 (4217) 59-13-79 </p>
+            <p style="font-size: 10pt;">Тел.: +7 (4217) 244-441, доб. 86 </p>
             <div class="dropdown-divider"></div>
             <p style="font-size: 10pt;">e-mail.: izdat@amgpgu.ru </p>
             <div class="dropdown-divider"></div>

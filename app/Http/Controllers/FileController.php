@@ -3,6 +3,7 @@
     namespace App\Http\Controllers;
 
     use App\Models\File;
+    use App\Models\Issue;
     use App\Models\Section;
     use App\Models\Upload;
     use Illuminate\Http\Request;
@@ -20,7 +21,37 @@
                 $name = $upload['title'];
                 $id = $upload['id'];
                 $size = Storage::size($file_path);
-                $files[] = array('name'=>$name,'size'=>$size,'path'=>$file_path, 'id' => $id);
+                $files[] = array('name' => $name, 'size' => $size, 'path' => $file_path, 'id' => $id);
+            }
+            return response()->json($files);
+        }
+
+
+        public function getIssues(Section $section, $yearR, $issueR, $volumeR)
+        {
+            //dd($yearR, $issueR, $volumeR);
+            if ($section->link == "issues") {
+//                 $array = explode(" ", $title);
+                $year = $yearR;
+                $number = $issueR;
+                $volume = $volumeR;
+                $path = 'public/files/' . $section->link . '/' . $year . '/' . $number . '/' . $volume . '/';
+
+            } else {
+                $path = 'public/files/' . $section->link . '/';
+            }
+
+
+//           dd($path);
+            $title = $year . ' ' . $number . ' ' . $volume;
+            $uploads = Upload::where('title', $title)->get();
+            $files = [];
+            foreach ($uploads as $upload) {
+                $file_path = $path . $upload['filename'];
+                $name = $upload['title'];
+                $id = $upload['id'];
+                $size = Storage::size($file_path);
+                $files[] = array('name' => $name, 'size' => $size, 'path' => $file_path, 'id' => $id);
             }
             return response()->json($files);
         }
@@ -46,13 +77,25 @@
             $filename = time() . $uploadedFile->getClientOriginalName();
             $title = explode('.', $uploadedFile->getClientOriginalName())[0];
 
-            $path = 'public/files/' . $section->link . '/'.$filename;
+            if ($section->link == "issues") {
+                $array = explode(" ", $title);
+                $year = $array[0];
+                $number = $array[1];
+                $volume = $array[2];
+                $path = 'public/files/' . $section->link . '/' . $year . '/' . $number . '/' . $volume . '/';
+
+
+            } else {
+                $path = 'public/files/' . $section->link . '/';
+            }
 
             Storage::disk('local')->putFileAs(
-                'public/files/' . $section->link . '/',
+                $path,
                 $uploadedFile,
                 $filename
             );
+
+            $path = $path . $filename;
 
             $upload = new Upload();
             $upload->filename = $filename;
@@ -71,6 +114,22 @@
             $section = $file->section->link;
             $filename = $file->filename;
             $file = storage_path('app/public/files/' . $section . '/' . $filename);
+            return response()->file($file);
+        }
+
+        public function getIssue(Upload $file)
+        {
+            //   dd($file);
+            $section = $file->section->link;
+            $filename = $file->filename;
+
+            $array = explode(" ", $file->title);
+            $year = $array[0];
+            $number = $array[1];
+            $volume = $array[2];
+
+          // dd($year, $number, $volume);
+            $file = storage_path('app/public/files/' . $section . '/' . $year . '/' . $number . '/' . $volume . '/' . $filename);
             return response()->file($file);
         }
 

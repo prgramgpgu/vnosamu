@@ -2,6 +2,7 @@
 
     namespace App\Models;
 
+    use App\Http\Controllers\FileController;
     use Illuminate\Database\Eloquent\Factories\HasFactory;
     use Illuminate\Database\Eloquent\Model;
 
@@ -12,8 +13,8 @@
 
         public function uploads()
         {
-        return $this->hasMany(Upload::class);
-//            return $this->morphMany(Upload::class, 'uploadable');
+            return $this->hasMany(Upload::class);
+//           return $this->morphMany(Upload::class, 'uploadable');
         }
 
 //        public function cover()
