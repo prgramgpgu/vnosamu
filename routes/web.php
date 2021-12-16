@@ -29,13 +29,17 @@
     Route::post('/{section}/upload', [FileController::class, 'upload'])->name('upload');
     Route::delete('/files/delete', [FileController::class, 'destroy'])->name('file.delete');
     Route::get('/files/{file}', [FileController::class, 'getFile'])->name('file.get');
+    Route::get('/files/issues/{file}', [FileController::class, 'getIssue'])->name('file.getIssue');
 
     Route::post('/files/{section}/index', [FileController::class, 'index'])->name('file.index');
+    Route::post('/files/{section}/{year}/{number}/{volume}', [FileController::class, 'getIssues'])->name('file.getIssues');
 
 
     Route::get('/sections/{section}/{year}', [IssueController::class, 'index'])->name('issues.index');
     Route::get('/sections/{section}/{year}/create', [IssueController::class, 'create'])->name('issues.create');
-    Route::post('/sections/{section}/{year}/store', [IssueController::class, 'create'])->name('issues.store');
+    Route::post('/sections/{section}/{year}/store', [IssueController::class, 'store'])->name('issues.store');
+    Route::get('/sections/{section}/{year}/{issue}/edit/', [IssueController::class, 'edit'])->name('issues.edit');
+    Route::patch('/{issue}/update/', [IssueController::class, 'update'])->name('issues.update');
 
     #авторизация
     Route::get('dashboard', [CustomAuthController::class, 'dashboard']);
@@ -52,5 +56,5 @@
             Route::post('/sections/store/', [Admin\SectionController::class, 'store'])->name('sections.store');
             Route::get('/sections/{section}/edit/', [Admin\SectionController::class, 'edit'])->name('sections.edit');
             Route::patch('/sections/{section}/update/', [Admin\SectionController::class, 'update'])->name('sections.update');
-
+           // Route::get('/sections/issues/create/', [Admin\IssueController::class, 'create'])->name('issues.create');
         });

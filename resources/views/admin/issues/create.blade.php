@@ -11,7 +11,7 @@
             </div>
 
             <div class="card-body mt-4">
-                <form method="POST" action="{{ route('issues.store', ['issues', '2021']) }}">
+                <form method="POST" action="{{ route('issues.store', ['issues', 'year']) }}">
                     @csrf
                     @foreach($errors->all() as $error)
                         <p class="alert alert-danger">{{$error}}</p>
@@ -32,47 +32,47 @@
 
                     <div class="form-group row">
                         <div class="col-lg-3 col-md-3">
-                            <label for="title" class="col-lg-12 control-label"><b>Год</b></label>
+                            <label for="year" class="col-lg-12 control-label"><b>Год</b></label>
                             <div class="col-lg-12">
-                                <input type="text" name="title" class="form-control" id="title" value="{{$year}}">
+                                <input type="text" name="year" class="form-control" id="year" value="{{$year}}">
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <label for="title" class="col-lg-12 control-label"><b>Номер</b></label>
+                            <label for="issue" class="col-lg-12 control-label"><b>Номер</b></label>
                             <div class="col-lg-12">
-                                <input type="text" name="title" class="form-control" id="title">
+                                <input type="text" name="issue" class="form-control" id="issue">
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <label for="title" class="col-lg-12 control-label"><b>Количество страниц</b></label>
+                            <label for="number_of_pages" class="col-lg-12 control-label"><b>Количество страниц</b></label>
                             <div class="col-lg-12">
-                                <input type="text" name="title" class="form-control" id="title">
+                                <input type="text" name="number_of_pages" class="form-control" id="number_of_pages">
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <label for="title" class="col-lg-12 control-label"><b>ISSN</b></label>
+                            <label for="issn" class="col-lg-12 control-label"><b>ISSN</b></label>
                             <div class="col-lg-12">
-                                <input type="text" name="title" class="form-control" id="title">
+                                <input type="text" name="issn" class="form-control" id="issn">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-lg-3 col-md-3">
-                            <label for="title" class="col-lg-12 control-label"><b>Том</b></label>
+                            <label for="volume" class="col-lg-12 control-label"><b>Том</b></label>
                             <div class="col-lg-12">
-                                <input type="text" name="title" class="form-control" id="title" value="1">
+                                <input type="text" name="volume" class="form-control" id="volume" value="1">
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <label for="title" class="col-lg-12 control-label"><b>Количество томов</b></label>
+                            <label for="number_of_volumes" class="col-lg-12 control-label"><b>Количество томов</b></label>
                             <div class="col-lg-12">
-                                <input type="text" name="title" class="form-control" id="title" value="1">
+                                <input type="text" name="number_of_volumes" class="form-control" id="number_of_volumes" value="1">
                             </div>
                         </div>
 
                         <div class="col-lg-3">
-                            <label for="title" class="col-lg-12 control-label"><b>Обложка</b></label>
+                            <label for="cover" class="col-lg-12 control-label"><b>Обложка</b></label>
                             <div class="col-lg-12">
                                 <div id="file" class="">
                                     <input type="file" name="cover" />

@@ -17,4 +17,9 @@ class File extends Model
     {
         return $this->belongsTo(Section::class);
     }
+
+    public function Issue()
+    {
+        return $this->belongsTo(Issue::class);
+    }
 }
